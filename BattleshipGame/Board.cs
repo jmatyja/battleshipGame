@@ -14,8 +14,8 @@ namespace BattleshipGame
         public Board(int boardSize)
         {
             _boardSize = boardSize;
-            _userGrid = new GameSquare[10, 10];
-            _computerGrid = new GameSquare[10, 10];
+            _userGrid = new GameSquare[_boardSize, _boardSize];
+            _computerGrid = new GameSquare[_boardSize, _boardSize];
         }
 
         public void PrepareNewGame(params int[] battleships)

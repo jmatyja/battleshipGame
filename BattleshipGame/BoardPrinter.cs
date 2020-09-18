@@ -23,10 +23,10 @@ namespace BattleshipGame
             var grid = _board.GetUserGrid();
             Console.Clear();
             PrintRow(_columns, string.Empty);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < _boardSize; i++)
             {
                 string[] row = new string[10];
-                for (int y = 0; y < 10; y++)
+                for (int y = 0; y < _boardSize; y++)
                 {
                     row[y] = grid[i, y] switch
                     {
