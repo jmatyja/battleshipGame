@@ -31,24 +31,24 @@ namespace BattleshipGame
             (var column, var row) = _shotParser.ParseShot(shot);
             column--; row--;
             
-            if (_computerGrid[row, column] == GameSquare.IsShip)
-                _computerGrid[row, column] = GameSquare.IsHit;
+            if (_computerGrid[row, column] == GameSquare.Ship)
+                _computerGrid[row, column] = GameSquare.Hit;
 
             (var isSinked, var squares) = CheckIfIsSinked(row, column);
             if (isSinked)
             {
                 squares.ToList().ForEach(i => {
-                    _computerGrid[i.row, i.column] = GameSquare.IsSink;
-                    _userGrid[i.row, i.column] = GameSquare.IsSink;
+                    _computerGrid[i.row, i.column] = GameSquare.Sink;
+                    _userGrid[i.row, i.column] = GameSquare.Sink;
                 });
             }
 
             _userGrid[row, column] = _computerGrid[row, column] switch
             {
                 GameSquare.Empty => GameSquare.BlindShoot,
-                GameSquare.IsShip => GameSquare.IsShip,
-                GameSquare.IsHit => GameSquare.IsShip,
-                GameSquare.IsSink => GameSquare.IsSink
+                GameSquare.Ship => GameSquare.Ship,
+                GameSquare.Hit => GameSquare.Ship,
+                GameSquare.Sink => GameSquare.Sink
             };
 
         }
@@ -57,7 +57,7 @@ namespace BattleshipGame
         {
             for (var r = 0; r < _computerGrid.GetLength(0); r++)
                 for (var c = 0; c < _computerGrid.GetLength(1); c++)
-                    if (_computerGrid[r, c] == GameSquare.IsShip)
+                    if (_computerGrid[r, c] == GameSquare.Ship)
                         return false;
             return true;
         }
@@ -77,15 +77,15 @@ namespace BattleshipGame
         }
         private (bool isSinked, IEnumerable<(int row, int column)> battleshipSquares) CheckIfIsSinked(int row, int column)
         {
-            if (_computerGrid[row, column] != GameSquare.IsHit)
+            if (_computerGrid[row, column] != GameSquare.Hit)
                 return (false, null);
 
             (var hHits, var hHitSquares) = GetHorizontalHitSquares(row, column);
-            if (hHits.Count() > 1 && hHitSquares.All(i => i == GameSquare.IsHit))
+            if (hHits.Count() > 1 && hHitSquares.All(i => i == GameSquare.Hit))
                 return (true, hHits);
 
             (var vHits, var vHitSquares) = GetVerticalHitSquares(row, column);
-            if (vHits.Count() > 1 && vHitSquares.All(i => i == GameSquare.IsHit))
+            if (vHits.Count() > 1 && vHitSquares.All(i => i == GameSquare.Hit))
                 return (true, vHits);
 
             return (false, null);
@@ -96,14 +96,14 @@ namespace BattleshipGame
             var hits = new List<(int row, int column)>() { (row, column) };
             var hitSquares = new List<GameSquare>() { _computerGrid[row, column] };
             var r = row - 1;
-            while (r > 0 && (_computerGrid[r, column] == GameSquare.IsHit || _computerGrid[r, column] == GameSquare.IsShip))
+            while (r > 0 && (_computerGrid[r, column] == GameSquare.Hit || _computerGrid[r, column] == GameSquare.Ship))
             {
                 hits.Add((r, column));
                 hitSquares.Add(_computerGrid[r, column]);
                 r--;
             }
             r = row + 1;
-            while (r < _boardSize && (_computerGrid[r, column] == GameSquare.IsHit || _computerGrid[r, column] == GameSquare.IsShip))
+            while (r < _boardSize && (_computerGrid[r, column] == GameSquare.Hit || _computerGrid[r, column] == GameSquare.Ship))
             {
                 hits.Add((r, column));
                 hitSquares.Add(_computerGrid[r, column]);
@@ -117,14 +117,14 @@ namespace BattleshipGame
             var hits = new List<(int row, int column)>() { (row, column) };
             var hitSquares = new List<GameSquare>() { _computerGrid[row, column] };
             var c = column - 1;
-            while (c > 0 && (_computerGrid[row, c] == GameSquare.IsHit || _computerGrid[row, c] == GameSquare.IsShip))
+            while (c > 0 && (_computerGrid[row, c] == GameSquare.Hit || _computerGrid[row, c] == GameSquare.Ship))
             {
                 hits.Add((row, c));
                 hitSquares.Add(_computerGrid[row, c]);
                 c--;
             }
             c = column + 1;
-            while (c < _boardSize && (_computerGrid[row, c] == GameSquare.IsHit || _computerGrid[row, c] == GameSquare.IsShip))
+            while (c < _boardSize && (_computerGrid[row, c] == GameSquare.Hit || _computerGrid[row, c] == GameSquare.Ship))
             {
                 hits.Add((row, c));
                 hitSquares.Add(_computerGrid[row, c]);
@@ -167,7 +167,7 @@ namespace BattleshipGame
             var i = 0;
             while (i++ < size)
             {
-                _computerGrid[row, column] = GameSquare.IsShip;
+                _computerGrid[row, column] = GameSquare.Ship;
                 _ = direction == Direction.Horizontal ? row++ : column++;
             }
         }
@@ -179,7 +179,7 @@ namespace BattleshipGame
                 if (row < 0 || row >= _boardSize || column < 0 || column >= _boardSize)
                     return false;
                
-                if (_computerGrid[row, column] == GameSquare.IsShip)
+                if (_computerGrid[row, column] == GameSquare.Ship)
                     return false;
 
                 for (var r = -1; r <= 1; r++)
@@ -188,7 +188,7 @@ namespace BattleshipGame
                         var tRow = _fixGridIndex(row + r);
                         var tCol = _fixGridIndex(column + c);
                        
-                        if (_computerGrid[tRow, tCol] == GameSquare.IsShip)
+                        if (_computerGrid[tRow, tCol] == GameSquare.Ship)
                             return false;
                     }
                 _ = direction == Direction.Horizontal ? row++ : column++;

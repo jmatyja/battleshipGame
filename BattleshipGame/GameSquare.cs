@@ -4,9 +4,9 @@ namespace BattleshipGame
     public enum GameSquare
     {
         Empty,
-        IsShip,
+        Ship,
         BlindShoot,
-        IsHit,
-        IsSink
+        Hit,
+        Sink
     }
 }

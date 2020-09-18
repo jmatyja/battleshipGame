@@ -28,7 +28,7 @@ namespace BattleshipGameTests
             var haveAnyShip = false;
             for (var r = 0; r < grid.GetLength(0); r++)
                 for (var c = 0; c < grid.GetLength(1); c++)
-                    if (grid[r, c] == GameSquare.IsShip)
+                    if (grid[r, c] == GameSquare.Ship)
                     {
                         haveAnyShip = true;
                     }
@@ -43,7 +43,7 @@ namespace BattleshipGameTests
             var haveAnyShip = false;
             for (var r = 0; r < grid.GetLength(0); r++)
                 for (var c = 0; c < grid.GetLength(1); c++)
-                    if (grid[r, c] == GameSquare.IsShip)
+                    if (grid[r, c] == GameSquare.Ship)
                     {
                         haveAnyShip = true;
                     }

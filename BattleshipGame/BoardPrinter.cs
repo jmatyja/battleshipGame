@@ -32,8 +32,8 @@ namespace BattleshipGame
                     {
                         GameSquare.Empty => string.Empty,
                         GameSquare.BlindShoot => "x",
-                        GameSquare.IsShip => "o",
-                        GameSquare.IsSink => "[o]"
+                        GameSquare.Ship => "o",
+                        GameSquare.Sink => "[o]"
                     };
                 }
                 PrintRow(row, _rows[i]);
