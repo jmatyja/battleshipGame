@@ -6,6 +6,7 @@ namespace BattleshipGame
         Empty,
         IsShip,
         BlindShoot,
-        IsHit
+        IsHit,
+        IsSink
     }
 }
