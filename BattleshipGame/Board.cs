@@ -45,7 +45,7 @@ namespace BattleshipGame
 
             _userGrid[row, column] = _computerGrid[row, column] switch
             {
-                GameSquare.Empty => GameSquare.BlindShoot,
+                GameSquare.Empty => GameSquare.BlindShot,
                 GameSquare.Ship => GameSquare.Ship,
                 GameSquare.Hit => GameSquare.Ship,
                 GameSquare.Sink => GameSquare.Sink

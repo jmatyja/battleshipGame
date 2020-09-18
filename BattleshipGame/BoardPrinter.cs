@@ -31,7 +31,7 @@ namespace BattleshipGame
                     row[y] = grid[i, y] switch
                     {
                         GameSquare.Empty => string.Empty,
-                        GameSquare.BlindShoot => "x",
+                        GameSquare.BlindShot => "x",
                         GameSquare.Ship => "o",
                         GameSquare.Sink => "[o]"
                     };

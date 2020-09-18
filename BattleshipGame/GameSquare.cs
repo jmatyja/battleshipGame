@@ -5,7 +5,7 @@ namespace BattleshipGame
     {
         Empty,
         Ship,
-        BlindShoot,
+        BlindShot,
         Hit,
         Sink
     }
