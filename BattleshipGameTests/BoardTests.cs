@@ -16,7 +16,7 @@ namespace BattleshipGameTests
             Assert.Equal(10, board.GetUserGrid().GetLength(0));
             Assert.Equal(10, board.GetUserGrid().GetLength(1));
             Assert.Equal(10, board.GetComputerGrid().GetLength(0));
-            Assert.Equal(10, board.GetComputerGrid().GetLength(0));
+            Assert.Equal(10, board.GetComputerGrid().GetLength(10));
         }
 
         [Fact]
