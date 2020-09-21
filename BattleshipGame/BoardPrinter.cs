@@ -25,7 +25,7 @@ namespace BattleshipGame
             PrintRow(_columns, string.Empty);
             for (int i = 0; i < _boardSize; i++)
             {
-                string[] row = new string[10];
+                string[] row = new string[_boardSize];
                 for (int y = 0; y < _boardSize; y++)
                 {
                     row[y] = grid[i, y] switch
